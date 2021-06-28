@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
 def covariance(arr, rowvar=True, sample=True):
@@ -21,14 +22,11 @@ def covariance(arr, rowvar=True, sample=True):
 
 	return arr_out
 
-def cov_heatmap(arr, labels, rowvar=True, sample=True):
-	if rowvar:
-		arr_cov = covariance(arr)
-	else:
-		pass
+def cov_heatmap(df, title=None):
+	cov = df.cov()	
 
 	fig, ax = plt.subplots()
-	im = ax.imshow(arr)
+	im = ax.imshow(cov)
 
 	# Configure axes
 	ax.set_xticks(np.arange(len(labels)))
@@ -38,10 +36,15 @@ def cov_heatmap(arr, labels, rowvar=True, sample=True):
 	ax.set_yticklabels(labels)
 	# Create color bar
 	cbar = ax.figure.colorbar(im, ax=ax)
-
+	# Set title
+	plt.title(title)
+	# Full size figure
 	fig.tight_layout()
 
 	plt.show()
 
 X = np.random.rand(5,5)
-cov_heatmap(X, ['one', 'two', 'three', 'four', 'five'])
+labels = ['one', 'two', 'three', 'four', 'five']
+labels = pd.Index(labels)
+df = pd.DataFrame(X, columns=labels)
+cov_heatmap(df, 'Example Covariance Heatmap')
