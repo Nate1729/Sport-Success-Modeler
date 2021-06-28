@@ -1,6 +1,5 @@
 """Setup file.
 """
-__license__ = "Apache License"
 
 from setuptools import setup, find_packages
 
