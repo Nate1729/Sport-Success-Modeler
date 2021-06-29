@@ -13,7 +13,7 @@ with open('sport_sucess_modeler/core/VERSION') as version_file:
     version = version_file.read().strip()
 assert isinstance(version, str)
 
-install_requirements = ['numpy', 'pandas', 'matplotlib']
+install_requirements = ['numpy', 'pandas', 'matplotlib', 'requests', 'bs4']
 
 setup(name='sport_success_modeler',
       version=version,
