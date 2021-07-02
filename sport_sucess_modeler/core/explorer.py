@@ -30,3 +30,28 @@ class Explore:
 		fig.tight_layout()
 
 		plt.show()
+
+	def svd_energy(self):
+		array = self.df.to_numpy()
+
+		# Column wise centering
+		array = array - array.mean(axis=1)
+
+		_, S, _ = np.linalg.svd(array, full_matrices=False)
+
+		plt.subplots(121)
+		plt.semilogy(S)
+		plt.ylabel('Signular Values')
+		plt.xlabel('k')
+		plt.grid()
+
+		plt.subplots(122)
+		plt.plot(S.cumsum()/S.sum())
+		plt.ylabel('Cumulative Sum')
+		plt.xlabel('k')
+		plt.grid()
+
+		plt.tight_layout()
+		plt.savefig(f'svd_Energy_{self.title}', dpi=800)
+
+
